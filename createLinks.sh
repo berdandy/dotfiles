@@ -1,7 +1,11 @@
 #!/bin/sh
 
 function linkdot() {
-	ln -s ~/.dotfiles/$1 .$1
+	if [ -f ~/.$1 ]; then
+		mv ~/.$i ~/.$i.bak
+	fi
+	rm ~/.$i 
+	ln -s ~/.dotfiles/$1 ~/.$1
 }
 
 linkdot bash_profile

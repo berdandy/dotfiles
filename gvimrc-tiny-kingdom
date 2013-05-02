@@ -1,0 +1,8 @@
+if has("gui_macvim")
+	nnoremap <D-t> :CommandT $TKC<CR>
+	nnoremap <D-r> :CommandT $TKS<CR>
+	nnoremap <D-f> :CommandT $FREYJA<CR>
+endif
+
+set wildignore+=node_modules
+

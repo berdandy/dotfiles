@@ -18,6 +18,7 @@ export TKC=~/Dev/Tiny-Kingdom/client/js
 export THOR=~/Dev/Tiny-Kingdom/client/js/thor
 export TK=~/Dev/Tiny-Kingdom
 
+# tiny kingdom multirunner
 function run() {
 	case "$1" in
 		"folkvangr")
@@ -48,6 +49,7 @@ EOF
 	esac
 }
 
+# bash completion
 function _run()
 {
 	local cur=${COMP_WORDS[COMP_CWORD]}

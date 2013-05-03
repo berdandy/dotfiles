@@ -17,3 +17,40 @@ export TKS=~/Dev/Tiny-Kingdom/server/js/tiny-kingdom
 export TKC=~/Dev/Tiny-Kingdom/client/js
 export THOR=~/Dev/Tiny-Kingdom/client/js/thor
 export TK=~/Dev/Tiny-Kingdom
+
+function run() {
+	case "$1" in
+		"folkvangr")
+			cd $FREYJA/folkvangr; screen -S folkvangr -DR node app.js run
+			;;
+		"zero")
+			cd $FREYJA/zero; screen -S zero -DR node app.js run
+			;;
+		"tiny-kingdom")
+			cd $TKS; screen -S tiny-kingdom -DR node app.js run
+			;;
+		*)
+			cat > ~/.unifiedRunConfig << EOF
+			chdir $FREYJA/folkvangr
+			screen bash -c 'node app.js run; exec bash -l'
+			split
+			focus
+			chdir $FREYJA/zero
+			screen bash -c 'node app.js run; exec bash -l'
+			split
+			focus
+			chdir $TKS
+			screen bash -c 'node app.js run; exec bash -l'
+			chdir $TK
+EOF
+			screen -S unified -DR -c ~/.unifiedRunConfig
+			;;
+	esac
+}
+
+function _run()
+{
+	local cur=${COMP_WORDS[COMP_CWORD]}
+	COMPREPLY=( $(compgen -W "tiny-kingdom folkvangr zero" -- $cur) )
+}
+complete -F _run run

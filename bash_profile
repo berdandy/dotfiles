@@ -22,13 +22,13 @@ export TK=~/Dev/Tiny-Kingdom
 function run() {
 	case "$1" in
 		"folkvangr")
-			cd $FREYJA/folkvangr; screen -S folkvangr -DR node app.js run
+			cd $FREYJA/folkvangr; screen -S folkvangr -DR bash -c 'node app.js run; exec bash -l'
 			;;
 		"zero")
-			cd $FREYJA/zero; screen -S zero -DR node app.js run
+			cd $FREYJA/zero; screen -S zero -DR bash -c 'node app.js run; exec bash -l'
 			;;
 		"tiny-kingdom")
-			cd $TKS; screen -S tiny-kingdom -DR node app.js run
+			cd $TKS; screen -S tiny-kingdom -DR bash -c 'node app.js run; exec bash -l'
 			;;
 		*)
 			cat > ~/.unifiedRunConfig << EOF

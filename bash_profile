@@ -12,6 +12,10 @@ if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
 	. /opt/local/etc/profile.d/bash_completion.sh
 fi
 
+if [ -f ~/.git-completion.bash ]; then
+	. ~/.git-completion.bash
+fi
+
 export FREYJA=~/Dev/Tiny-Kingdom/server/js/freyja
 export TKS=~/Dev/Tiny-Kingdom/server/js/tiny-kingdom
 export TKC=~/Dev/Tiny-Kingdom/client/js

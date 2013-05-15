@@ -2,9 +2,8 @@
 
 function linkdot() {
 	if [ -f ~/.$1 ]; then
-		mv ~/.$i ~/.$i.bak
+		mv ~/.$1 ~/.$1.bak
 	fi
-	rm ~/.$i 
 	ln -s ~/.dotfiles/$1 ~/.$1
 }
 
@@ -15,3 +14,4 @@ linkdot vim
 linkdot vimrc
 linkdot gvimrc
 linkdot gvimrc-tiny-kingdom
+linkdot git-completion.bash

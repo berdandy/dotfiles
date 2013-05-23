@@ -8,6 +8,10 @@ NODE_PATH="/usr/local/lib/jsctags:${NODE_PATH}"
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 # Finished adapting your PATH environment variable for use with MacPorts.
 
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
 if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
 	. /opt/local/etc/profile.d/bash_completion.sh
 fi
@@ -16,13 +20,8 @@ if [ -f ~/.git-completion.bash ]; then
 	. ~/.git-completion.bash
 fi
 
-export FREYJA=~/Dev/Tiny-Kingdom/server/js/freyja
-export TKS=~/Dev/Tiny-Kingdom/server/js/tiny-kingdom
-export TKC=~/Dev/Tiny-Kingdom/client/js
-export THOR=~/Dev/Tiny-Kingdom/client/js/thor
-export TK=~/Dev/Tiny-Kingdom
-
 # tiny kingdom multirunner
+#   requires FREYJA, TKS env vars
 function run() {
 	case "$1" in
 		"folkvangr")

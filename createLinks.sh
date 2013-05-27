@@ -27,3 +27,4 @@ linkdot vimrc
 linkdot gvimrc
 linkdot gvimrc-tiny-kingdom
 linkdot git-completion.bash
+linkdot newtab.bash

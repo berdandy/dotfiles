@@ -1,0 +1,7 @@
+if has("gui_macvim")
+	nnoremap <D-r> :CommandT $DHC<CR>
+	nnoremap <D-f> :CommandT $DHS<CR>
+endif
+
+set wildignore+=lib-cov,node_modules,*.test.js
+

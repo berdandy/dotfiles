@@ -26,6 +26,7 @@ linkdot vim
 linkdot vimrc
 linkdot gvimrc
 linkdot gvimrc-tiny-kingdom
+linkdot gvimrc-dark-heroes
 linkdot git-completion.bash
 linkdot newtab.bash
 linkdot git.commit.template

@@ -6,5 +6,6 @@ if has("gui_macvim")
 	set wildignore+=**/node_modules/**,*.png,*.jpg,*.wav,*.mp3
 endif
 
-source ~/.gvimrc-tiny-kingdom
+" source ~/.gvimrc-tiny-kingdom
+source ~/.gvimrc-dark-heroes
 

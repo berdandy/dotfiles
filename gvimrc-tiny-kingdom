@@ -4,5 +4,5 @@ if has("gui_macvim")
 	nnoremap <D-f> :CommandT $FREYJA<CR>
 endif
 
-set wildignore+=node_modules,*.test.js
+set wildignore+=lib-cov,node_modules,*.test.js
 

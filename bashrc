@@ -4,6 +4,7 @@ export TKC=~/Dev/Tiny-Kingdom/client/js
 export THOR=~/Dev/Tiny-Kingdom/client/js/thor
 export TK=~/Dev/Tiny-Kingdom
 
+export DH=~/Dev/Helga
 export DHS=~/Dev/Helga/Server
 export DHC=~/Dev/Helga/Client
 

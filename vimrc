@@ -63,6 +63,7 @@ vmap <D-[> <gv
 vmap <D-]> >gv
 
 command -nargs=+ TKSearch vimgrep <args> $TK/**/*.js
+command -nargs=+ DHSearch vimgrep <args> $DH/**/*.js
 
 " grep/ack
 set grepprg=ack-5.12

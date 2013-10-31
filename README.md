@@ -14,3 +14,4 @@ TO INSTALL:
 TODO:
 - add vundle as git subtree
 - write setup script
+- add misc build helper scripts

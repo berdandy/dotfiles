@@ -1,2 +1,6 @@
 *.swp
 .DS_Store
+vim/bundle/AnsiEsc.vim
+vim/bundle/ctrlp.vim/
+vim/bundle/vim-gitgutter/
+vim/bundle/.vundle/

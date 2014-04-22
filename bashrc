@@ -8,6 +8,7 @@ export DH=~/Dev/Helga
 export DHS=~/Dev/Helga/Server
 export DHDH=~/Dev/Helga/Server/js/dark-heroes
 export DHC=~/Dev/Helga/Client
+export DHA=~/Dev/Helga_Assets
 
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases

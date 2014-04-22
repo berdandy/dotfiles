@@ -16,6 +16,12 @@ set guifont=Monaco\ for\ Powerline:h13
 set background=dark
 colorscheme koehler
 
+highlight SignColumn guibg=black
+highlight GitGutterAdd ctermfg=2 ctermbg=8 guifg=#009900 guibg=black
+highlight GitGutterChange ctermfg=3 ctermbg=8 guifg=#bbbb00 guibg=black
+highlight GitGutterDelete ctermfg=1 ctermbg=8 guifg=#ff2222 guibg=black
+highlight GitGutterChangeDelete ctermfg=3 ctermbg=8 guifg=#bbbb00 guibg=black
+
 " gui options
 set guioptions-=T
 set noeb vb t_vb=
@@ -40,6 +46,9 @@ Bundle 'mattn/zencoding-vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'kien/ctrlp.vim'
+Bundle 'AnsiEsc.vim'
+Plugin 'airblade/vim-gitgutter'
 
 " set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
@@ -63,7 +72,7 @@ vmap <D-[> <gv
 vmap <D-]> >gv
 
 command -nargs=+ TKSearch vimgrep <args> $TK/**/*.js
-command -nargs=+ DHSearch vimgrep <args> $DH/**/*.js
+command -nargs=+ DHSearch vimgrep <args> $DH/**/*.js $DH/**/*.html $DH/**/*.css
 
 " grep/ack
 set grepprg=ack-5.12

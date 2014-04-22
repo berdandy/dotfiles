@@ -30,3 +30,7 @@ linkdot gvimrc-dark-heroes
 linkdot git-completion.bash
 linkdot newtab.bash
 linkdot git.commit.template
+
+echo 'You may want to run the following:'
+echo '  In Vim: :PluginInstall'
+echo '  In bash: vim +PluginInstall +qall'

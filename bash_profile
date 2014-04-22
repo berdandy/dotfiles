@@ -57,3 +57,5 @@ function _run()
 	COMPREPLY=( $(compgen -W "tiny-kingdom folkvangr zero" -- $cur) )
 }
 complete -F _run run
+
+[ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM

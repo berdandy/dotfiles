@@ -34,3 +34,4 @@ linkdot git.commit.template
 echo 'You may want to run the following in bash:'
 echo '  git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle'
 echo '  vim +PluginInstall +qall'
+echo '  cd ~/.vim/bundle/command-t/ruby/command-t; ruby extconf.rb; make'

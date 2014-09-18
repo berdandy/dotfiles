@@ -42,7 +42,7 @@ Bundle 'gmarik/vundle'
 " installed packages:
 Bundle 'wincent/Command-T'
 Bundle 'motemen/git-vim'
-Bundle 'mattn/zencoding-vim'
+Bundle 'mattn/emmet-vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-powerline'

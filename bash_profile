@@ -33,19 +33,11 @@ function run() {
 	fi
 
 	case "$1" in
-		"folkvangr")
-			newtab eval "cd $FREYJA/folkvangr ; node app.js run"
+		"dark-heroes")
+			newtab eval "cd $DH/Server/js/dark-heroes; java -jar darkheroes-server-jar-with-dependencies.jar"
 			;;
-		"zero")
-			newtab eval "cd $FREYJA/zero ; node app.js run"
-			;;
-		"tiny-kingdom")
-			newtab eval "cd $TKS ; node app.js run"
-			;;
-		*)
-			newtab eval "cd $FREYJA/folkvangr ; node app.js run"
-			newtab eval "cd $FREYJA/zero ; node app.js run"
-			newtab eval "cd $TKS ; node app.js run"
+		"madccg")
+			newtab eval "cd $MAD/Server/js/dark-heroes; java -jar darkheroes-server-jar-with-dependencies.jar"
 			;;
 	esac
 }
@@ -54,7 +46,7 @@ function run() {
 function _run()
 {
 	local cur=${COMP_WORDS[COMP_CWORD]}
-	COMPREPLY=( $(compgen -W "tiny-kingdom folkvangr zero" -- $cur) )
+	COMPREPLY=( $(compgen -W "dark-heroes madccg" -- $cur) )
 }
 complete -F _run run
 

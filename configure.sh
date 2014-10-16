@@ -22,7 +22,6 @@ linkdot bash_aliases
 linkdot bash_profile
 linkdot bashrc
 linkdot gitconfig
-linkdot vim
 linkdot vimrc
 linkdot gvimrc
 linkdot gvimrc-tiny-kingdom

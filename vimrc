@@ -71,8 +71,5 @@ noremap <F7> :g/\s\+\w\+\s*:\s*function/p<CR>
 vmap <D-[> <gv
 vmap <D-]> >gv
 
-command -nargs=+ DHSearch vimgrep <args> $DH/**/*.js $DH/**/*.html $DH/**/*.css $DH/**/*.java
-command -nargs=+ MSearch vimgrep <args> $M/**/*.js $M/**/*.html $M/**/*.css $M/**/*.java
-
 " grep/ack
 set grepprg=ack-5.12

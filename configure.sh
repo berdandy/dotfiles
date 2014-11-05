@@ -24,7 +24,7 @@ linkdot bashrc
 linkdot gitconfig
 linkdot vimrc
 linkdot gvimrc
-linkdot gvimrc-tiny-kingdom
+linkdot gvimrc-madccg
 linkdot gvimrc-dark-heroes
 linkdot git-completion.bash
 linkdot newtab.bash

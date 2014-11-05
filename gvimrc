@@ -15,3 +15,6 @@ menu Tools.Use\ DH\ Environment :source ~/.gvimrc-dark-heroes<CR>
 " source ~/.gvimrc-dark-heroes
 source ~/.gvimrc-madccg
 
+" autoloader
+au BufRead,BufNewFile $M/* source ~/.gvimrc-madccg
+au BufRead,BufNewFile $DH/* source ~/.gvimrc-dark-heroes

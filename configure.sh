@@ -29,6 +29,7 @@ linkdot gvimrc-dark-heroes
 linkdot git-completion.bash
 linkdot newtab.bash
 linkdot git.commit.template
+linkdot todo
 
 echo 'You may want to run the following in bash:'
 echo '  git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle'

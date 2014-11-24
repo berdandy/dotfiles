@@ -8,6 +8,9 @@ NODE_PATH="/usr/local/lib/jsctags:${NODE_PATH}"
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 # Finished adapting your PATH environment variable for use with MacPorts.
 
+# For todo.txt scripts
+export PATH=~/.todo:$PATH
+
 if [ -f ~/.bashrc ]; then
 	. ~/.bashrc
 fi
@@ -18,6 +21,10 @@ fi
 
 if [ -f ~/.git-completion.bash ]; then
 	. ~/.git-completion.bash
+fi
+
+if [ -f ~/.todo/todo_completion ]; then
+	. ~/.todo/todo_completion
 fi
 
 if [ -f ~/.newtab.bash ]; then

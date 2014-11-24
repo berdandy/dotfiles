@@ -3,16 +3,27 @@ dotfiles
 
 DotFiles (mostly vim and bash helpers)
 
+ - git completion
+ - bash environment
+ - todo.txt cli (configured for ~/Dropbox/todo/todo.txt)
+ - Vim Plugins/Tools:
+   - wincent/Command-T
+   - motemen/git-vim
+   - mattn/emmet-vim
+   - pangloss/vim-javascript
+   - tpope/vim-fugitive
+   - Lokaltog/vim-powerline
+   - kien/ctrlp.vim
+   - berdandy/AnsiEsc.vim
+   - airblade/vim-gitgutter
+   - freitass/todo.txt-vim (non-vundle)
+
 TO INSTALL:
 - clone into ~/.dotfiles
-- cd ~/.dotfiles && ./createLinks.sh
-- edit ~/.bashrc to set up your project directories
-- install hub: ````http://hub.github.com````
 - install vundle: ````git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle````
-- launch vim, run ````:BundleInstall````
+- cd ~/.dotfiles && ./configure.sh
+- follow the instructions
 
-  
-TODO:
-- add vundle as git subtree
-- write setup script
-- add misc build helper scripts
+OPTIONAL:
+- install hub: ````http://hub.github.com````
+

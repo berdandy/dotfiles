@@ -5,7 +5,7 @@ NODE_PATH="/usr/local/lib/jsctags:${NODE_PATH}"
 ##
 
 # MacPorts Installer addition on 2013-01-22_at_07:33:17: adding an appropriate PATH variable for use with MacPorts.
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH:/Applications/MAMP/Library/bin
 # Finished adapting your PATH environment variable for use with MacPorts.
 
 # For todo.txt scripts
@@ -44,7 +44,10 @@ function run() {
 			newtab eval "cd $DH/Server/js/dark-heroes; java -jar darkheroes-server-jar-with-dependencies.jar"
 			;;
 		"madccg")
-			newtab eval "cd $MAD/Server/js/dark-heroes; java -jar darkheroes-server-jar-with-dependencies.jar"
+			newtab eval "cd ~/Dev/Yggdrasil/yggdrasil-server/target; java -Xmx128m -Xms32m -jar yggdrasil-server-*-SNAPSHOT-jar-with-dependencies.jar"
+			newtab eval "cd ~/Dev/Kellaa/kellaa-server/target; java -Xmx128m -Xms32m -jar kellaa-server-*-SNAPSHOT-jar-with-dependencies.jar"
+			newtab eval "cd ~/Dev/Jormungand/jormungand-server/target; java -Xmx128m -Xms32m -jar jormungand-server-*-SNAPSHOT-jar-with-dependencies.jar"
+			newtab eval "cd $MM; java -jar darkheroes-server-jar-with-dependencies.jar"
 			;;
 	esac
 }

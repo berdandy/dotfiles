@@ -48,6 +48,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'kien/ctrlp.vim'
 Bundle 'berdandy/AnsiEsc.vim'
+Bundle 'mileszs/ack.vim'
 Plugin 'airblade/vim-gitgutter'
 
 " set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P

@@ -47,7 +47,7 @@ function run() {
 			newtab eval "cd ~/Dev/Yggdrasil/yggdrasil-server/target; java -Xmx128m -Xms32m -jar yggdrasil-server-*-SNAPSHOT-jar-with-dependencies.jar"
 			newtab eval "cd ~/Dev/Kellaa/kellaa-server/target; java -Xmx128m -Xms32m -jar kellaa-server-*-SNAPSHOT-jar-with-dependencies.jar"
 			newtab eval "cd ~/Dev/Jormungand/jormungand-server/target; java -Xmx128m -Xms32m -jar jormungand-server-*-SNAPSHOT-jar-with-dependencies.jar"
-			newtab eval "cd $MM; java -jar darkheroes-server-jar-with-dependencies.jar"
+			newtab eval "cd ~/Dev/HelgaMad/Server/dh-server/target; java -Xmx128m -Xms32m -jar madccg-server-1.1-SNAPSHOT-jar-with-dependencies.jar"
 			;;
 	esac
 }

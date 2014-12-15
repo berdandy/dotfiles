@@ -44,10 +44,10 @@ function run() {
 			newtab eval "cd $DH/Server/js/dark-heroes; java -jar darkheroes-server-jar-with-dependencies.jar"
 			;;
 		"madccg")
-			newtab eval "cd ~/Dev/Yggdrasil/yggdrasil-server/target; java -Xmx128m -Xms32m -jar yggdrasil-server-*-SNAPSHOT-jar-with-dependencies.jar"
-			newtab eval "cd ~/Dev/Kellaa/kellaa-server/target; java -Xmx128m -Xms32m -jar kellaa-server-*-SNAPSHOT-jar-with-dependencies.jar"
-			newtab eval "cd ~/Dev/Jormungand/jormungand-server/target; java -Xmx128m -Xms32m -jar jormungand-server-*-SNAPSHOT-jar-with-dependencies.jar"
-			newtab eval "cd ~/Dev/HelgaMad/Server/dh-server/target; java -Xmx128m -Xms32m -jar madccg-server-1.1-SNAPSHOT-jar-with-dependencies.jar"
+			newtab eval "cd ~/Dev/Yggdrasil/yggdrasil-server; java -Xmx128m -Xms32m -jar target/yggdrasil-server-*-SNAPSHOT-jar-with-dependencies.jar"
+			newtab eval "cd ~/Dev/Kellaa/kellaa-server; java -Xmx128m -Xms32m -jar target/kellaa-server-*-SNAPSHOT-jar-with-dependencies.jar"
+			newtab eval "cd ~/Dev/Jormungand/jormungand-server; java -Xmx128m -Xms32m -jar target/jormungand-server-*-SNAPSHOT-jar-with-dependencies.jar"
+			newtab eval "cd ~/Dev/HelgaMad/Server/dh-server; java -Xmx128m -Xms32m -jar target/madccg-server-1.1-SNAPSHOT-jar-with-dependencies.jar"
 			;;
 	esac
 }

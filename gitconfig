@@ -1,6 +1,3 @@
-[user]
-	name = Andy Berdan
-	email = aberdan@bigvikinggames.com
 [core]
 	excludesfile = /Users/aberdan/.gitignore_global
 [difftool "sourcetree"]

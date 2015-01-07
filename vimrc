@@ -14,6 +14,7 @@ syntax on
 " font/color
 set guifont=Monaco\ for\ Powerline:h13
 set background=dark
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 colorscheme koehler
 
 highlight SignColumn guibg=black

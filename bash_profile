@@ -46,7 +46,7 @@ function run() {
 			;;
 		"dark-heroes")
 			run services
-			newtab eval "cd ~/Dev/Helga/Server/dh-server; java -Xmx128m -Xms32m -jar target/madccg-server-*-SNAPSHOT-jar-with-dependencies.jar"
+			newtab eval "cd ~/Dev/Helga/Server/dh-server; java -Xmx128m -Xms32m -jar target/darkheroes-server-*-SNAPSHOT-jar-with-dependencies.jar"
 			;;
 		"madccg")
 			run services

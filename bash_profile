@@ -40,13 +40,17 @@ function run() {
 	fi
 
 	case "$1" in
-		"dark-heroes")
-			newtab eval "cd $DH/Server/js/dark-heroes; java -jar darkheroes-server-jar-with-dependencies.jar"
-			;;
-		"madccg")
+		"services")
 			newtab eval "cd ~/Dev/Yggdrasil/yggdrasil-server; java -Xmx128m -Xms32m -jar target/yggdrasil-server-*-SNAPSHOT-jar-with-dependencies.jar"
 			newtab eval "cd ~/Dev/Kellaa/kellaa-server; java -Xmx128m -Xms32m -jar target/kellaa-server-*-SNAPSHOT-jar-with-dependencies.jar"
 			newtab eval "cd ~/Dev/Jormungand/jormungand-server; java -Xmx128m -Xms32m -jar target/jormungand-server-*-SNAPSHOT-jar-with-dependencies.jar"
+			;;
+		"dark-heroes")
+			run services
+			newtab eval "cd ~/Dev/HelgaMad/Server/dh-server; java -Xmx128m -Xms32m -jar target/madccg-server-*-SNAPSHOT-jar-with-dependencies.jar"
+			;;
+		"madccg")
+			run services
 			newtab eval "cd ~/Dev/HelgaMad/Server/dh-server; java -Xmx128m -Xms32m -jar target/madccg-server-*-SNAPSHOT-jar-with-dependencies.jar"
 			;;
 	esac

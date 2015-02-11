@@ -3,7 +3,7 @@ if has("gui_macvim")
 	nnoremap <D-f> :CommandT $DHS<CR>
 endif
 
-command! -nargs=+ RSearch vimgrep <args> $DH/**/*.js $DH/**/*.html $DH/**/*.css $DH/**/*.java
+command! -nargs=+ RSearch Ack <args> $DH
 
 set wildignore+=lib-cov,node_modules,*.test.js
 

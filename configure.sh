@@ -21,6 +21,7 @@ function linkdot() {
 linkdot bash_aliases
 linkdot bash_profile
 linkdot bashrc
+linkdot inputrc
 linkdot gitconfig
 linkdot vimrc
 linkdot gvimrc

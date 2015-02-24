@@ -18,6 +18,8 @@ export MAVEN_OPTS="-Xms256m -Xmx512m"
 export PATH=$M2:$PATH
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/
 
+set bell-style visible
+
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi

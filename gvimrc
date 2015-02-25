@@ -12,8 +12,8 @@ menu Tools.Use\ MADCW\ Environment :source ~/.gvimrc-madccg<CR>
 menu Tools.Use\ DH\ Environment :source ~/.gvimrc-dark-heroes<CR>
 
 " default below
-" source ~/.gvimrc-dark-heroes
-source ~/.gvimrc-madccg
+source ~/.gvimrc-dark-heroes
+" source ~/.gvimrc-madccg
 
 " autoloader
 au BufRead,BufNewFile $M/* source ~/.gvimrc-madccg

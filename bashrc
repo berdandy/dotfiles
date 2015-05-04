@@ -12,11 +12,11 @@ export MM=~/Dev/HelgaMad/Server/js/dark-heroes
 export MC=~/Dev/HelgaMad/Client
 export MA=~/Dev/HelgaMad_Assets
 
-export M2_HOME=/usr/local/apache-maven-3.2.2/
+export M2_HOME=/usr/local/apache-maven/apache-maven-3.3.1/
 export M2=$M2_HOME/bin
 export MAVEN_OPTS="-Xms256m -Xmx512m"
 export PATH=$M2:$PATH
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/
 
 set bell-style visible
 

@@ -31,12 +31,18 @@ if [ -f ~/.newtab.bash ]; then
 	. ~/.newtab.bash
 fi
 
+
 # multirunner
 function run() {
 	if ! [ `type -t newtab` ]; then
 		echo "ERROR: newtab() not defined, make sure you have newtab.bash included in your bash_profile"
 		return
 	fi
+
+	CURRENT_IP=$(ifconfig | grep 'inet ' | grep -v '127.0.0.1' | head -n1 | awk '{ print $2}')
+	cat ~/Dev/Jormungand/jormungand-server/config/yggdrasil.properties.autotemplate | sed -e "s/CURRENT_IP/$CURRENT_IP/g" > ~/Dev/Jormungand/jormungand-server/config/yggdrasil.properties
+	cat ~/Dev/Helga/Client/js/thor/Config.js.autotemplate | sed -e "s/CURRENT_IP/$CURRENT_IP/g" > ~/Dev/Helga/Client/js/thor/Config.js
+	cat ~/Dev/Helga/Client/js/tkthor/Config.js.autotemplate | sed -e "s/CURRENT_IP/$CURRENT_IP/g" > ~/Dev/Helga/Client/js/tkthor/Config.js
 
 	case "$1" in
 		"services")

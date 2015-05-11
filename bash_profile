@@ -46,15 +46,22 @@ function run() {
 
 	case "$1" in
 		"services")
+			sleep 1
 			newtab eval "cd ~/Dev/Yggdrasil/yggdrasil-server; java -Xmx128m -Xms32m -jar target/yggdrasil-server-*-SNAPSHOT-jar-with-dependencies.jar"
+			sleep 1
 			newtab eval "cd ~/Dev/Kellaa/kellaa-server; java -Xmx128m -Xms32m -jar target/kellaa-server-*-SNAPSHOT-jar-with-dependencies.jar"
+			sleep 1
 			newtab eval "cd ~/Dev/Jormungand/jormungand-server; java -Xmx128m -Xms32m -jar target/jormungand-server-*-SNAPSHOT-jar-with-dependencies.jar"
 			;;
-		"dark-heroes")
-			run services
+		"dh")
+			sleep 1
 			newtab eval "cd ~/Dev/Helga/Server/dh-server; java -Xmx128m -Xms32m -jar target/darkheroes-server-*-SNAPSHOT-jar-with-dependencies.jar"
 			;;
-		"madccg")
+		"dark-heroes-all")
+			run services
+			run dh
+			;;
+		"madccg-all")
 			run services
 			newtab eval "cd ~/Dev/HelgaMad/Server/dh-server; java -Xmx128m -Xms32m -jar target/madccg-server-*-SNAPSHOT-jar-with-dependencies.jar"
 			;;
@@ -86,7 +93,7 @@ function build() {
 function _run()
 {
 	local cur=${COMP_WORDS[COMP_CWORD]}
-	COMPREPLY=( $(compgen -W "services dark-heroes madccg" -- $cur) )
+	COMPREPLY=( $(compgen -W "services dh dark-heroes-all madccg-all" -- $cur) )
 }
 complete -F _run run
 

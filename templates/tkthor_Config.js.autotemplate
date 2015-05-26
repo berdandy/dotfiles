@@ -1,0 +1,92 @@
+define(function(require, exports, module) {
+
+	var FEATURES = require('thor/features');
+
+	var isSslEnabled = false;
+
+	/// @{
+	/// Host Selection
+
+	var host = 'CURRENT_IP'; // localhost
+	//var host = 'http://tinykingdoms-chat.bvgam.es'; // Amazon QA Server
+	// var host = 'http://tk-qa1-game.bigvikinggames.com'; // VM QA Server
+
+	/// @}
+	var port = 13372;
+	var secureHost = host.replace('http','https');
+	var securePort = 443;
+
+	if (typeof window === 'undefined') {
+		module.exports = {
+			host: host,
+			port: port,
+			serverPath: host + ':' + port,
+			secureHost: secureHost,
+			securePort: securePort,
+			securePath: secureHost + ':' + securePort,
+
+			ssl: {
+				isEnabled: isSslEnabled
+			},
+			
+			facebook: {
+				appId: 218741828295985,
+				channelUrl: null,
+				namespace: "bvgtinykingdoms",
+				productHost: "https://iap-stage.bigvikinggames.com"
+			}
+		};
+
+	} else {
+		module.exports = {
+			host: host,
+			port: port,
+			getServerPath: function getServerPath() {
+				return host + ':' + port;
+			},
+			secureHost: secureHost,
+			securePort: securePort,
+			getSecureServerPath: function getSecureServerPath() {
+				return secureHost + ':' + securePort;
+			},
+			connectionType: 'socket',
+			// connectionType: 'rest',
+
+			ssl: {
+				isEnabled: isSslEnabled
+			},
+
+			facebook: {
+				appId: 218741828295985,
+				channelUrl: null,
+				namespace: "bvgtinykingdoms",
+				productHost: "https://iap-stage.bigvikinggames.com"
+			}
+		};
+	}
+
+	module.exports.FEATURES_BLACKLIST = [FEATURES.MAGNI, FEATURES.PAYPAL, FEATURES.BOKU];
+
+	module.exports.ALWAYS_USE_100_SPRITES = true;
+
+	// Reference viewport dimensions
+
+	module.exports.REFERENCE_VIEWPORT_WIDTH_IN_PIXELS = 1920;
+	module.exports.REFERENCE_VIEWPORT_HEIGHT_IN_PIXELS = 1280;
+	module.exports.REFERENCE_ASSET_SIZE = 2;
+
+	// AnimatedSprite scale
+
+	module.exports.ANIMATED_SPRITE_FRAME_SCALE = 0.25;
+
+	// Maximum viewport dimensions
+	
+	module.exports.MAX_VIEWPORT_WIDTH_HI_RES = 1920;
+	module.exports.MAX_VIEWPORT_HEIGHT_HI_RES = 1280;
+
+	// Turn on update debugging
+	module.exports.DEBUG_DIRTY_LAYOUT = true;
+
+	Object.freeze(module.exports);
+
+});

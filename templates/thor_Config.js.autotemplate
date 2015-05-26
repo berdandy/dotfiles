@@ -1,0 +1,69 @@
+(function() {
+
+Thor.Config = Thor.Class.create({
+	base: 'CURRENT_IP',
+	host: 'ws://CURRENT_IP', // for local test server
+	port: '13372',
+	
+	initialize: function() {
+	},
+
+	/*
+	 * Provides game server host string
+	 * @return {String} 'host:port' Returns default from thor if one is not defined from Settings.plist (or on browser)
+	 * 
+	 */
+	getGameServer: function() {
+		if (window.GAME_SERVER_HOST && window.GAME_SERVER_PORT) {
+			return window.GAME_SERVER_HOST + ':' + window.GAME_SERVER_PORT;
+		} else {
+			console.log("Using default game server in thor config");
+			return this.host + ':' + this.port;
+		}
+	},
+
+	/*
+	 * Provides web server host string
+	 * @return {String} 'host:port' Returns default from thor if one is not defined from Settings.plist (or on browser)
+	 * 
+	 */
+	getWebServer: function() {
+		return 'http://' + this.base;
+	},
+
+	/**
+	 * Get BAM server host name
+	 * @return {string}
+	 * @public
+	 */
+	getBamHost: function getBamHost() {
+		return this.base;
+	},
+
+	/**
+	 * Should match webSocketPort on bam server
+	 * @return {number}
+	 * @public
+	 */
+	getBamPort: function getBamPort() {
+		return 13372;
+	},
+
+	/**
+	 * Flag for toggling ssl
+	 * @return {boolean}
+	 * @public
+	 */
+	isBamSecure: function isBamSecure() {
+		return false;
+	},
+});
+
+var instance = new Thor.Config();
+Thor.Config.getInstance = function() {
+	return instance;
+};
+
+})();
+
+eof();

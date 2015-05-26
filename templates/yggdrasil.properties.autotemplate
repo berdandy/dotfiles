@@ -1,0 +1,12 @@
+---
+
+# we must search through multiple interfaces as some interfaces are used to connect
+# 2 servers in different data centers.
+
+
+yggdrasil.host = CURRENT_IP
+
+yggdrasil.port = 11370
+     
+local.host = CURRENT_IP
+     

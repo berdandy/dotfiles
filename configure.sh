@@ -18,6 +18,7 @@ function linkdot() {
 	fi
 }
 
+echo 'Linking dotfiles...'
 linkdot bash_aliases
 linkdot bash_profile
 linkdot bashrc
@@ -31,6 +32,14 @@ linkdot git-completion.bash
 linkdot newtab.bash
 linkdot git.commit.template
 linkdot todo
+
+echo 'Installing /usr/local/bin scripts...'
+mkdir -p /usr/local/bin
+for i in localscripts/*; do
+	echo "... $i"
+	chmod a+x $i
+	cp $i /usr/local/bin
+done
 
 echo 'You may want to run the following in bash:'
 echo '  git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle'

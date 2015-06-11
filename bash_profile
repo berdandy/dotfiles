@@ -55,15 +55,15 @@ function run() {
 			newtab eval "cd ~/Dev/Jormungand/jormungand-server; java -Xmx128m -Xms32m -jar target/jormungand-server-*-jar-with-dependencies.jar"
 			;;
 		"services")
-			sleep 1
+			sleep 2
 			run yggdrasil
-			sleep 1
+			sleep 2
 			run kellaa
-			sleep 1
+			sleep 2
 			run jormungand
 			;;
 		"dh")
-			sleep 1
+			sleep 2
 			newtab eval "cd ~/Dev/Helga/Server/dh-server; java -Xmx128m -Xms32m -jar target/darkheroes-server-*-SNAPSHOT-jar-with-dependencies.jar"
 			;;
 		"dark-heroes-all")

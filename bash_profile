@@ -73,6 +73,9 @@ function run() {
 		"validation-dh")
 			eval "cd ~/Dev/Helga/Server/dh-server; java -Xmx128m -Xms32m -jar ~/Dev/Helga/Tools/dh-tools/target/darkheroes-tools-*-SNAPSHOT-jar-with-dependencies.jar validate"
 			;;
+		"export-dh")
+			eval "cd ~/Dev/Helga/Server/dh-server; java -Xmx128m -Xms32m -jar ~/Dev/Helga/Tools/dh-tools/target/darkheroes-tools-*-SNAPSHOT-jar-with-dependencies.jar export -odir $DHC/js/data"
+			;;
 		"madccg-all")
 			run services
 			newtab eval "cd ~/Dev/HelgaMad/Server/dh-server; java -Xmx128m -Xms32m -jar target/madccg-server-*-SNAPSHOT-jar-with-dependencies.jar"
@@ -108,7 +111,7 @@ function build() {
 function _run()
 {
 	local cur=${COMP_WORDS[COMP_CWORD]}
-	COMPREPLY=( $(compgen -W "yggdrasil kellaa jormungand services dh dark-heroes-all validation-dh madccg-all" -- $cur) )
+	COMPREPLY=( $(compgen -W "yggdrasil kellaa jormungand services dh dark-heroes-all validation-dh export-dh madccg-all" -- $cur) )
 }
 complete -F _run run
 

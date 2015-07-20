@@ -65,6 +65,7 @@ let g:Powerline_symbols = 'fancy'
 let g:Powerline_colorscheme = 'solarized256'
 
 " shortcuts
+noremap <F2> :Ack <cword><CR>
 noremap <F3> :set hlsearch!<CR>
 noremap <F5> :CommandTFlush<CR>
 noremap <F7> :g/\s\+\w\+\s*:\s*function/p<CR>
@@ -75,3 +76,5 @@ vmap <D-]> >gv
 
 " grep/ack
 set grepprg=ack-5.12
+
+com! FormatJSON %!python -m json.tool

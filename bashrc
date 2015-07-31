@@ -1,6 +1,6 @@
 export FREYJA=~/Dev/Tiny-Kingdom/server/js/freyja
 
-export PV=~/Dev/ProjectV-Thor
+export P=~/Dev/ProjectV-Thor
 
 export DH=~/Dev/Helga
 export DHS=~/Dev/Helga/Server

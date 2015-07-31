@@ -26,6 +26,7 @@ linkdot inputrc
 linkdot gitconfig
 linkdot vimrc
 linkdot gvimrc
+linkdot gvimrc-projectv
 linkdot gvimrc-madccg
 linkdot gvimrc-dark-heroes
 linkdot git-completion.bash

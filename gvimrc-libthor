@@ -1,0 +1,8 @@
+if has("gui_macvim")
+	nnoremap <D-r> :CommandT $T<CR>
+endif
+
+command! -nargs=+ RSearch Ack <args> $T
+
+" set wildignore+=lib-cov,node_modules,*.test.js
+

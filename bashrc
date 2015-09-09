@@ -1,4 +1,5 @@
-export FREYJA=~/Dev/Tiny-Kingdom/server/js/freyja
+
+export T=~/Dev/Thor
 
 export P=~/Dev/ProjectV-Thor
 

@@ -122,4 +122,9 @@ function _build()
 }
 complete -F _build build
 
+LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
+if [ -f $LUNCHY_DIR/lunchy-completion.bash ]; then
+	. $LUNCHY_DIR/lunchy-completion.bash
+fi
+
 [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM

@@ -1,6 +1,8 @@
 
 export T=~/Dev/Thor
 
+export TT=~/Dev/tiny-tappers
+
 export P=~/Dev/ProjectV-Thor
 
 export DH=~/Dev/Helga

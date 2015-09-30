@@ -4,5 +4,18 @@ endif
 
 command! -nargs=+ RSearch Ack <args> $TT
 
-" set wildignore+=lib-cov,node_modules,*.test.js
+function! ToggleLegacySearch()
+	if (exists("g:CommandTWildIgnore"))
+		unlet! g:CommandTWildIgnore
+		CommandTFlush
+		echom "Not ignoring Legacy Code"
+	else 
+		let g:CommandTWildIgnore=&wildignore . ",legacy"
+		CommandTFlush
+		echom "Ignoring Legacy Code"
+	endif
+endfunction
+
+noremap <F4> :call ToggleLegacySearch()<CR>
+let g:CommandTWildIgnore=&wildignore . ",legacy"
 

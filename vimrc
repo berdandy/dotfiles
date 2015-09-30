@@ -68,7 +68,7 @@ let g:Powerline_colorscheme = 'solarized256'
 noremap <F2> :Ack <cword><CR>
 noremap <F3> :set hlsearch!<CR>
 noremap <F5> :CommandTFlush<CR>
-noremap <F7> :g/\s\+\w\+\s*:\s*function/p<CR>
+noremap <F6> :g/\s\+\w\+\s*:\s*function/p<CR>
 
 " indent and dedent
 vmap <D-[> <gv

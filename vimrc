@@ -74,7 +74,24 @@ noremap <F6> :g/\s\+\w\+\s*:\s*function/p<CR>
 vmap <D-[> <gv
 vmap <D-]> >gv
 
+" disable middle click pasting
+map <MiddleMouse> <Nop>
+imap <MiddleMouse> <Nop>
+
 " grep/ack
 set grepprg=ack-5.12
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
-com! FormatJSON %!python -m json.tool
+if executable('ag')
+	let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+		  \ --ignore .git
+		  \ --ignore .svn
+		  \ --ignore .hg
+		  \ --ignore .DS_Store
+		  \ --ignore "**/*.pyc"
+		  \ --ignore "**/target/**"
+		  \ --ignore "*.meta"
+		  \ -g ""'
+endif
+
+com! FormatJSON %!json_reformat

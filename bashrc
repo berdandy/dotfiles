@@ -2,6 +2,7 @@
 export T=~/Dev/Thor
 
 export TT=~/Dev/tiny-tappers
+export TTA=~/Dev/tiny-tappers-assets
 
 export P=~/Dev/ProjectV-Thor
 

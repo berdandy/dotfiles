@@ -3,6 +3,7 @@ export T=~/Dev/Thor
 
 export TT=~/Dev/tiny-tappers
 export TTA=~/Dev/tiny-tappers-assets
+export K=~/Dev/Kellaa
 
 export P=~/Dev/ProjectV-Thor
 
@@ -33,3 +34,6 @@ fi
 if [ -f ~/.bash_private ]; then
 	. ~/.bash_private
 fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

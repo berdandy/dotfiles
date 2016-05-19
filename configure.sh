@@ -31,6 +31,7 @@ linkdot gvimrc-libthor
 linkdot gvimrc-projectv
 linkdot gvimrc-madccg
 linkdot gvimrc-dark-heroes
+linkdot gvimrc-kellaa
 linkdot git-completion.bash
 linkdot newtab.bash
 linkdot git.commit.template

@@ -8,7 +8,7 @@ function! ToggleLegacySearch()
 	if (exists("g:CommandTWildIgnore"))
 		unlet! g:CommandTWildIgnore
 		CommandTFlush
-		command! -nargs=+ RSearch Ack <args> $TT --noignore-dir=legacy
+		command! -nargs=+ RSearch Ack <args> $TT
 		echom "Not ignoring Legacy Code"
 	else 
 		let g:CommandTWildIgnore=&wildignore . ",legacy"

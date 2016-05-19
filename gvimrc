@@ -27,3 +27,4 @@ au BufRead,BufNewFile $T/* source ~/.gvimrc-libthor
 au BufRead,BufNewFile $P/* source ~/.gvimrc-projectv
 au BufRead,BufNewFile $M/* source ~/.gvimrc-madccg
 au BufRead,BufNewFile $DH/* source ~/.gvimrc-dark-heroes
+au BufRead,BufNewFile $K/* source ~/.gvimrc-kellaa

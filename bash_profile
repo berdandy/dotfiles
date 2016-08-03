@@ -59,12 +59,14 @@ function run() {
 			run yggdrasil
 			sleep 2
 			run kellaa
-			sleep 2
-			run jormungand
 			;;
 		"dh")
 			sleep 2
 			newtab eval "cd ~/Dev/Helga/Server/dh-server; java -Xmx128m -Xms32m -jar target/darkheroes-server-*-SNAPSHOT-jar-with-dependencies.jar"
+			;;
+		"tt")
+			sleep 2
+			newtab eval "cd ~/Dev/tiny-tappers/server; java -jar target/game-server-*-SNAPSHOT-jar-with-dependencies.jar"
 			;;
 		"dark-heroes-all")
 			run services

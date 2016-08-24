@@ -15,7 +15,8 @@ menu Tools.Use\ MADCW\ Environment :source ~/.gvimrc-madccg<CR>
 menu Tools.Use\ DH\ Environment :source ~/.gvimrc-dark-heroes<CR>
 
 " default below
-source ~/.gvimrc-tiny-tappers
+source ~/.gvimrc-tripletap
+" source ~/.gvimrc-tiny-tappers
 " source ~/.gvimrc-libthor
 " source ~/.gvimrc-projectv
 " source ~/.gvimrc-dark-heroes

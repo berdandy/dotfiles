@@ -1,23 +1,23 @@
+export T=~/Dev/ThorCC
+export TE=~/Dev/ThorCC-External
+export TX=~/Dev/ThorCC-Example
+export TT=~/Dev/TripleTap
 
-export T=~/Dev/Thor
-
-export TT=~/Dev/tiny-tappers
-export TTA=~/Dev/tiny-tappers-assets
-export K=~/Dev/Kellaa
-
-export P=~/Dev/ProjectV-Thor
-
-export DH=~/Dev/Helga
-export DHS=~/Dev/Helga/Server
-export DHDH=~/Dev/Helga/Server/js/dark-heroes
-export DHC=~/Dev/Helga/Client
-export DHA=~/Dev/Helga_Assets
-
-export M=~/Dev/HelgaMad
-export MS=~/Dev/HelgaMad/Server
-export MM=~/Dev/HelgaMad/Server/js/dark-heroes
-export MC=~/Dev/HelgaMad/Client
-export MA=~/Dev/HelgaMad_Assets
+# export T=~/Dev/Thor
+# export TT=~/Dev/tiny-tappers
+# export TTA=~/Dev/tiny-tappers-assets
+# export K=~/Dev/Kellaa
+# export P=~/Dev/ProjectV-Thor
+# export DH=~/Dev/Helga
+# export DHS=~/Dev/Helga/Server
+# export DHDH=~/Dev/Helga/Server/js/dark-heroes
+# export DHC=~/Dev/Helga/Client
+# export DHA=~/Dev/Helga_Assets
+# export M=~/Dev/HelgaMad
+# export MS=~/Dev/HelgaMad/Server
+# export MM=~/Dev/HelgaMad/Server/js/dark-heroes
+# export MC=~/Dev/HelgaMad/Client
+# export MA=~/Dev/HelgaMad_Assets
 
 export M2_HOME=/usr/local/apache-maven/apache-maven-3.3.1/
 export M2=$M2_HOME/bin

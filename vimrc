@@ -8,6 +8,7 @@ set shiftwidth=4
 set ruler
 set smarttab
 set nowrap
+set tags=./tags,tags,~/Dev/tags
 
 syntax on
 
@@ -42,15 +43,17 @@ Bundle 'gmarik/vundle'
 
 " installed packages:
 Bundle 'wincent/Command-T'
-Bundle 'motemen/git-vim'
-Bundle 'mattn/emmet-vim'
-Bundle 'pangloss/vim-javascript'
-Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'kien/ctrlp.vim'
 Bundle 'berdandy/AnsiEsc.vim'
 Bundle 'mileszs/ack.vim'
+Bundle 'motemen/git-vim'
+Bundle 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
+
+" Disable old javascripty plugins
+" Bundle 'kien/ctrlp.vim'
+" Bundle 'mattn/emmet-vim'
+" Bundle 'pangloss/vim-javascript'
 
 " set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 

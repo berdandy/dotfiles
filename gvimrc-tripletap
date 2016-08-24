@@ -1,0 +1,9 @@
+if has("gui_macvim")
+	nnoremap <D-r> :CommandT $TT<CR>
+endif
+
+command! -nargs=+ RSearch Ack <args> $TT --ignore-dir=legacy
+
+noremap <F4> :CommandTTag<CR>
+
+set makeprg=make\ -C\ $TT/build

@@ -26,6 +26,7 @@ linkdot inputrc
 linkdot gitconfig
 linkdot vimrc
 linkdot gvimrc
+linkdot gvimrc-tripletap
 linkdot gvimrc-tiny-tappers
 linkdot gvimrc-libthor
 linkdot gvimrc-projectv

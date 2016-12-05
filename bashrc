@@ -1,7 +1,10 @@
 export T=~/Dev/ThorCC
 export TE=~/Dev/ThorCC-External
-export TX=~/Dev/ThorCC-Example
+export TX=~/Dev/ThorCC-Examples
 export TT=~/Dev/TripleTap
+
+export TINY=~/Dev/tiny-tappers
+export TINYA=~/Dev/tiny-tappers-assets
 
 # export T=~/Dev/Thor
 # export TT=~/Dev/tiny-tappers

@@ -38,6 +38,13 @@ linkdot newtab.bash
 linkdot git.commit.template
 linkdot todo
 
+echo 'Installing local plugins...'
+mkdir -p ~/.vim/plugin
+for i in localplugins/*; do
+	echo "... $i"
+	cp $i ~/.vim/plugin
+done
+
 echo 'Installing /usr/local/bin scripts...'
 mkdir -p /usr/local/bin
 for i in localscripts/*; do

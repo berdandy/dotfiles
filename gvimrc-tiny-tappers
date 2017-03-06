@@ -1,19 +1,19 @@
 if has("gui_macvim")
-	nnoremap <D-r> :CommandT $TT<CR>
+	nnoremap <D-r> :CommandT $TINY<CR>
 endif
 
-command! -nargs=+ RSearch Ack <args> $TT --ignore-dir=legacy
+command! -nargs=+ RSearch Ack <args> $TINY --ignore-dir=legacy
 
 function! ToggleLegacySearch()
 	if (exists("g:CommandTWildIgnore"))
 		unlet! g:CommandTWildIgnore
 		CommandTFlush
-		command! -nargs=+ RSearch Ack <args> $TT
+		command! -nargs=+ RSearch Ack <args> $TINY
 		echom "Not ignoring Legacy Code"
 	else 
 		let g:CommandTWildIgnore=&wildignore . ",legacy"
 		CommandTFlush
-		command! -nargs=+ RSearch Ack <args> $TT --ignore-dir=legacy
+		command! -nargs=+ RSearch Ack <args> $TINY --ignore-dir=legacy
 		echom "Ignoring Legacy Code"
 	endif
 endfunction

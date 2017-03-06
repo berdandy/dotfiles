@@ -5,7 +5,7 @@ NODE_PATH="/usr/local/lib/jsctags:${NODE_PATH}"
 ##
 
 # MacPorts Installer addition on 2013-01-22_at_07:33:17: adding an appropriate PATH variable for use with MacPorts.
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH:/Applications/MAMP/Library/bin
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH:/Applications/MAMP/Library/bin:/Users/aberdan/emsdk_portable:/Users/aberdan/emsdk_portable/clang/e1.35.0_64bit:/Users/aberdan/emsdk_portable/node/4.1.1_64bit/bin:/Users/aberdan/emsdk_portable/emscripten/1.35.0
 # Finished adapting your PATH environment variable for use with MacPorts.
 
 # For todo.txt scripts
@@ -31,6 +31,12 @@ if [ -f ~/.newtab.bash ]; then
 	. ~/.newtab.bash
 fi
 
+function mktags() {
+	pushd ~/dev
+	ctags -R $TT
+	popd
+}
+alias mkctags=mktags
 
 # multirunner
 function run() {

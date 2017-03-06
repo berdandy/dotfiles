@@ -1,6 +1,8 @@
 export T=~/Dev/ThorCC
 export TE=~/Dev/ThorCC-External
 export TX=~/Dev/ThorCC-Examples
+export H=~/Dev/Hymir
+export HA=~/Dev/Hymir-Assets
 export TT=~/Dev/TripleTap
 
 export TINY=~/Dev/tiny-tappers

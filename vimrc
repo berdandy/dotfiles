@@ -2,7 +2,6 @@
 set ignorecase
 set cindent
 set autoindent
-set smartindent
 set tabstop=4
 set shiftwidth=4
 set ruler
@@ -70,8 +69,8 @@ let g:Powerline_colorscheme = 'solarized256'
 " shortcuts
 noremap <F2> :Ack <cword><CR>
 noremap <F3> :set hlsearch!<CR>
-noremap <F5> :CommandTFlush<CR>
-noremap <F6> :g/\s\+\w\+\s*:\s*function/p<CR>
+noremap <F5> :A<CR>
+noremap <F6> :CommandTFlush<CR>
 
 " indent and dedent
 vmap <D-[> <gv
@@ -98,3 +97,6 @@ if executable('ag')
 endif
 
 com! FormatJSON %!json_reformat
+
+let g:alternateExtensions_h = 'cc,CC'
+let g:alternateExtensions_H = 'CC'

@@ -6,6 +6,7 @@ set tabstop=4
 set shiftwidth=4
 set ruler
 set smarttab
+set expandtab
 set nowrap
 set tags=./tags,tags,~/Dev/tags
 

@@ -12,7 +12,9 @@ function showHelp() {
     echo '   -t  rebuild thorcc'
     echo '   -x  rebuild thorcc-examples'
     echo '   -a  rebuild all (default)'
+    echo '   -X  rebuild nothing (if you only want to clean, or link assets)'
     echo '   -R  build for release (warning: may require clean)'
+    echo '   -A  link assets to Examples build locations'
 }
 
 CLEAN=false
@@ -22,10 +24,12 @@ ONLYEMSCRIPTEN=false
 EXTERNAL=false
 THOR=false
 EXAMPLES=false
+NODEFAULTBUILD=false
+ASSETS=false
 RELEASE=Debug
 MAKECMD="make -j4"
 
-args=`getopt hncjJetxaR $*`
+args=`getopt hncjJetxaXRA $*`
 if [ $? != 0 ]; then
     showHelp
     exit 2
@@ -64,8 +68,14 @@ for i; do
                 THOR=true
                 EXAMPLES=true
                 shift;;
+            -X)
+                NODEFAULTBUILD=true
+                shift;;
             -R)
                 RELEASE=Release
+                shift;;
+            -A)
+                ASSETS=true
                 shift;;
             --)
                 shift; break;;
@@ -78,7 +88,7 @@ $ONLYEMSCRIPTEN && {
 }
 
 # if no options set, handle default of build-all
-$EXTERNAL || $THOR || $EXAMPLES || {
+$EXTERNAL || $THOR || $EXAMPLES || $NODEFAULTBUILD || {
     EXTERNAL=true
     THOR=true
     EXAMPLES=true
@@ -174,6 +184,16 @@ function buildExamples() {
     popd
 }
 
+function linkAssets() {
+    pushd $TX
+        mkdir -p $1/editor
+        $EXEC ln -sf $TX/assets $TX/$1/editor/assets
+        $EXEC ln -sf $TX/editorAssets $TX/$1/editor/editorAssets
+        mkdir -p $1/game
+        $EXEC ln -sf $TX/assets $TX/$1/game/assets
+    popd
+}
+
 if $CLEAN; then 
     $EXTERNAL && clean $TE
     $THOR && clean $T
@@ -183,4 +203,6 @@ fi
 $EXTERNAL && buildExternal
 $THOR && buildThor
 $EXAMPLES && buildExamples
+$ASSETS && linkAssets build
+$ASSETS && linkAssets build-js
 

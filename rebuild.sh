@@ -136,7 +136,7 @@ function buildThor() {
             mkdir -p build
             pushd build
                 $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install/thorcc -DCMAKE_PREFIX_PATH="~/install/external/cmake;~/install/tools/cmake" -DCMAKE_BUILD_TYPE=$RELEASE
-                $EXEC make && $EXEC make install }
+                $EXEC make && $EXEC make install
             popd
         }
 

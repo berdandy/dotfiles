@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# TODO split this into sub-builds or something
-
 function showHelp() {
     echo "Usage: ./rebuild.sh [-h] [-n] [-c] [-j]"
     echo ' where'
@@ -9,14 +7,20 @@ function showHelp() {
     echo '   -n  dry run'
     echo '   -c  clean'
     echo '   -j  build emscripten targets as well'
+    echo '   -e  rebuild thorcc-external'
+    echo '   -t  rebuild thorcc'
+    echo '   -x  rebuild thorcc-examples'
+    echo '   -a  rebuild all (default)'
 }
 
 CLEAN=false
 DRY_RUN=false
 EMSCRIPTEN=false
-TARGET=all
+EXTERNAL=false
+THOR=false
+EXAMPLES=false
 
-args=`getopt hncj $*`
+args=`getopt hncjetxa $*`
 if [ $? != 0 ]; then
     showHelp
     exit 2
@@ -38,10 +42,26 @@ for i; do
             -j)
                 EMSCRIPTEN=true
                 shift;;
+            -e)
+                EXTERNAL=true
+                shift;;
+            -t)
+                THOR=true
+                shift;;
+            -x)
+                EXAMPLES=true
+                shift;;
             --)
                 shift; break;;
        esac
 done
+
+$EXTERNAL || $THOR || $EXAMPLES || {
+    echo 'Building all...'
+    EXTERNAL=true
+    THOR=true
+    EXAMPLES=true
+}
 
 if [ ! -d $T ] || [ ! -d $TE ] || [ ! -d $TX ]; then
     echo Environment variables T, TE, and TX must be defined and point to git clone folders:
@@ -149,14 +169,12 @@ function buildExamples() {
 }
 
 if $CLEAN; then 
-    echo wot - $CLEAN
-    cleanExternal
-    cleanThor
-    cleanExamples
+    $EXTERNAL && cleanExternal
+    $THOR && cleanThor
+    $EXAMPLES && cleanExamples
 fi
 
-
-buildExternal
-buildThor
-buildExamples
+$EXTERNAL && buildExternal
+$THOR && buildThor
+$EXAMPLES && buildExamples
 

@@ -187,9 +187,11 @@ function buildExamples() {
 function linkAssets() {
     pushd $TX
         mkdir -p $1/editor
+        $EXEC ln -sf $TX/tools/config.js $TX/$1/editor/
         $EXEC ln -sf $TX/assets $TX/$1/editor/assets
         $EXEC ln -sf $TX/editorAssets $TX/$1/editor/editorAssets
         mkdir -p $1/game
+        $EXEC ln -sf $TX/tools/config.js $TX/$1/game/
         $EXEC ln -sf $TX/assets $TX/$1/game/assets
     popd
 }

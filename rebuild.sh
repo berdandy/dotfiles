@@ -103,7 +103,7 @@ fi
 
 function clean() {
     echo Cleaning $1...
-    $EXEC rm -rf $1/build
+    $ONLYEMSCRIPTEN || $EXEC rm -rf $1/build
     $BUILDEMSCRIPTEN && $EXEC rm -rf $1/build-js
 }
 

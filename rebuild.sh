@@ -98,11 +98,12 @@ function cleanExternal() {
     echo Cleaning $TE...
     $DRY_RUN && return
     rm -rf $TE/build
-    rm -rf $TE/build-js
+    $EMSCRIPTEN && rm -rf $TE/build-js
 }
 
 function buildExternal() {
     echo Building $TE...
+    $EMSCRIPTEN && echo ... with added emscripten flavour
     $DRY_RUN && return
     pushd $TE
         mkdir -p build
@@ -126,11 +127,12 @@ function cleanThor() {
     echo Cleaning $T...
     $DRY_RUN && return
     rm -rf $T/build
-    rm -rf $T/build-js
+    $EMSCRIPTEN && rm -rf $T/build-js
 }
 
 function buildThor() {
     echo Building $T...
+    $EMSCRIPTEN && echo ... with added emscripten flavour
     $DRY_RUN && return
     pushd $T
         mkdir -p build
@@ -154,11 +156,12 @@ function cleanExamples() {
     echo Cleaning $TX...
     $DRY_RUN && return
     rm -rf $TX/build
-    rm -rf $TX/build-js
+    $EMSCRIPTEN && rm -rf $TX/build-js
 }
 
 function buildExamples() {
     echo Building $TX...
+    $EMSCRIPTEN && echo ... with added emscripten flavour
     $DRY_RUN && return
     pushd $TX
         mkdir -p build

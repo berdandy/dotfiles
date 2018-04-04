@@ -23,6 +23,7 @@ EXTERNAL=false
 THOR=false
 EXAMPLES=false
 RELEASE=Debug
+MAKECMD="make -j4"
 
 args=`getopt hncjJetxaR $*`
 if [ $? != 0 ]; then
@@ -114,7 +115,7 @@ function buildExternal() {
             mkdir -p build
             pushd build
                 $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install/external -DCMAKE_BUILD_TYPE=$RELEASE
-                $EXEC make && $EXEC make install
+                $EXEC $MAKECMD && $EXEC $MAKECMD install
             popd
         }
 
@@ -123,7 +124,7 @@ function buildExternal() {
             mkdir -p build-js
             pushd build-js
                 $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install-js/external -DCMAKE_BUILD_TYPE=$RELEASE -DCMAKE_TOOLCHAIN_FILE=$EMSCRIPTEN/cmake/Modules/Platform/Emscripten.cmake
-                $EXEC make && $EXEC make install
+                $EXEC $MAKECMD && $EXEC $MAKECMD install
             popd
         }
     popd
@@ -136,7 +137,7 @@ function buildThor() {
             mkdir -p build
             pushd build
                 $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install/thorcc -DCMAKE_PREFIX_PATH="~/install/external/cmake;~/install/tools/cmake" -DCMAKE_BUILD_TYPE=$RELEASE
-                $EXEC make && $EXEC make install
+                $EXEC $MAKECMD && $EXEC $MAKECMD install
             popd
         }
 
@@ -145,7 +146,7 @@ function buildThor() {
             mkdir -p build-js
             pushd build-js
                 $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install-js/thorcc -DCMAKE_PREFIX_PATH="~/install-js/external/cmake;~/install/tools/cmake" -DCMAKE_BUILD_TYPE=$RELEASE -DCMAKE_TOOLCHAIN_FILE=$EMSCRIPTEN/cmake/Modules/Platform/Emscripten.cmake
-                $EXEC make && $EXEC make install
+                $EXEC $MAKECMD && $EXEC $MAKECMD install
             popd
         }
     popd
@@ -158,7 +159,7 @@ function buildExamples() {
             mkdir -p build
             pushd build
                 $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install/examples -DCMAKE_PREFIX_PATH="~/install/external/cmake;~/install/thorcc/cmake;~/install/tools/cmake" -DCMAKE_MODULE_PATH=~/install/thorcc/cmake -DCMAKE_BUILD_TYPE=$RELEASE
-                $EXEC make && $EXEC make install
+                $EXEC $MAKECMD && $EXEC $MAKECMD install
             popd
         }
 
@@ -167,7 +168,7 @@ function buildExamples() {
             mkdir -p build-js
             pushd build-js
                 $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install-js/examples -DCMAKE_TOOLCHAIN_FILE=$EMSCRIPTEN/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_PREFIX_PATH="~/install-js/external/cmake;~/install-js/thorcc/cmake;~/install/tools/cmake" -DCMAKE_MODULE_PATH=~/install-js/thorcc/cmake -DCMAKE_BUILD_TYPE=$RELEASE
-                $EXEC make
+                $EXEC $MAKECMD
             popd
         }
     popd

@@ -7,6 +7,7 @@ function showHelp() {
     echo '   -n  dry run'
     echo '   -c  clean'
     echo '   -j  build emscripten targets as well'
+    echo '   -J  build ONLY emscripten'
     echo '   -e  rebuild thorcc-external'
     echo '   -t  rebuild thorcc'
     echo '   -x  rebuild thorcc-examples'
@@ -16,13 +17,14 @@ function showHelp() {
 
 CLEAN=false
 DRY_RUN=false
-EMSCRIPTEN=false
+BUILDEMSCRIPTEN=false
+ONLYEMSCRIPTEN=false
 EXTERNAL=false
 THOR=false
 EXAMPLES=false
 RELEASE=Debug
 
-args=`getopt hncjetxaR $*`
+args=`getopt hncjJetxaR $*`
 if [ $? != 0 ]; then
     showHelp
     exit 2
@@ -42,7 +44,10 @@ for i; do
                 CLEAN=true
                 shift;;
             -j)
-                EMSCRIPTEN=true
+                BUILDEMSCRIPTEN=true
+                shift;;
+            -J)
+                ONLYEMSCRIPTEN=true
                 shift;;
             -e)
                 EXTERNAL=true
@@ -66,12 +71,22 @@ for i; do
        esac
 done
 
-# handle default of build-all
+# only-emscripten implies emscripten
+$ONLYEMSCRIPTEN && {
+    BUILDEMSCRIPTEN=true
+}
+
+# if no options set, handle default of build-all
 $EXTERNAL || $THOR || $EXAMPLES || {
     EXTERNAL=true
     THOR=true
     EXAMPLES=true
 }
+
+EXEC=
+if $DRY_RUN; then
+    EXEC=echo 
+fi
 
 if [ ! -d $T ] || [ ! -d $TE ] || [ ! -d $TX ]; then
     echo Environment variables T, TE, and TX must be defined and point to git clone folders:
@@ -86,105 +101,82 @@ if [ ! -x ~/install/tools/bin/ThorTouch ]; then
     exit 2
 fi
 
-if [ $HELP ]; then
-    echo Usage $0 '[clean]'
-    echo '- builds external, thorcc, and thorcc-examples'
-    echo '- if 'clean' is specified, build directories are trashed before'
-    echo '  rebuilding, otherwise existing cmake is retained'
-    exit 0
-fi
-
-function cleanExternal() {
-    echo Cleaning $TE...
-    $DRY_RUN && return
-    rm -rf $TE/build
-    $EMSCRIPTEN && rm -rf $TE/build-js
+function clean() {
+    echo Cleaning $1...
+    $EXEC rm -rf $1/build
+    $BUILDEMSCRIPTEN && $EXEC rm -rf $1/build-js
 }
 
 function buildExternal() {
-    echo Building $TE...
-    $EMSCRIPTEN && echo ... with added emscripten flavour
-    $DRY_RUN && return
     pushd $TE
-        mkdir -p build
-        pushd build
-            cmake .. -DCMAKE_INSTALL_PREFIX=~/install/external -DCMAKE_BUILD_TYPE=$RELEASE
-            make && make install
-        popd
+        $ONLYEMSCRIPTEN || {
+            echo Building $TE $RELEASE...
+            mkdir -p build
+            pushd build
+                $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install/external -DCMAKE_BUILD_TYPE=$RELEASE
+                $EXEC make && $EXEC make install
+            popd
+        }
 
-        if $EMSCRIPTEN; then
+        $BUILDEMSCRIPTEN && {
             echo Building $TE emscripten...
             mkdir -p build-js
             pushd build-js
-                cmake .. -DCMAKE_INSTALL_PREFIX=~/install-js/external -DCMAKE_BUILD_TYPE=$RELEASE -DCMAKE_TOOLCHAIN_FILE=$EMSCRIPTEN/cmake/Modules/Platform/Emscripten.cmake
-                make && make install
+                $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install-js/external -DCMAKE_BUILD_TYPE=$RELEASE -DCMAKE_TOOLCHAIN_FILE=$EMSCRIPTEN/cmake/Modules/Platform/Emscripten.cmake
+                $EXEC make && $EXEC make install
             popd
-        fi
+        }
     popd
-}
-
-function cleanThor() {
-    echo Cleaning $T...
-    $DRY_RUN && return
-    rm -rf $T/build
-    $EMSCRIPTEN && rm -rf $T/build-js
 }
 
 function buildThor() {
-    echo Building $T...
-    $EMSCRIPTEN && echo ... with added emscripten flavour
-    $DRY_RUN && return
     pushd $T
-        mkdir -p build
-        pushd build
-            cmake .. -DCMAKE_INSTALL_PREFIX=~/install/thorcc -DCMAKE_PREFIX_PATH="~/install/external/cmake;~/install/tools/cmake" -DCMAKE_BUILD_TYPE=$RELEASE
-            make && make install
-        popd
+        $ONLYEMSCRIPTEN || {
+            echo Building $T $RELEASE...
+            mkdir -p build
+            pushd build
+                $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install/thorcc -DCMAKE_PREFIX_PATH="~/install/external/cmake;~/install/tools/cmake" -DCMAKE_BUILD_TYPE=$RELEASE
+                $EXEC make && $EXEC make install }
+            popd
+        }
 
-        if $EMSCRIPTEN; then
+        $BUILDEMSCRIPTEN && {
             echo Building $T emscripten...
             mkdir -p build-js
             pushd build-js
-                cmake .. -DCMAKE_INSTALL_PREFIX=~/install-js/thorcc -DCMAKE_PREFIX_PATH="~/install-js/external/cmake;~/install/tools/cmake" -DCMAKE_BUILD_TYPE=$RELEASE -DCMAKE_TOOLCHAIN_FILE=$EMSCRIPTEN/cmake/Modules/Platform/Emscripten.cmake
-                make && make install
+                $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install-js/thorcc -DCMAKE_PREFIX_PATH="~/install-js/external/cmake;~/install/tools/cmake" -DCMAKE_BUILD_TYPE=$RELEASE -DCMAKE_TOOLCHAIN_FILE=$EMSCRIPTEN/cmake/Modules/Platform/Emscripten.cmake
+                $EXEC make && $EXEC make install
             popd
-        fi
+        }
     popd
 }
 
-function cleanExamples() {
-    echo Cleaning $TX...
-    $DRY_RUN && return
-    rm -rf $TX/build
-    $EMSCRIPTEN && rm -rf $TX/build-js
-}
-
 function buildExamples() {
-    echo Building $TX...
-    $EMSCRIPTEN && echo ... with added emscripten flavour
-    $DRY_RUN && return
     pushd $TX
-        mkdir -p build
-        pushd build
-            cmake .. -DCMAKE_INSTALL_PREFIX=~/install/examples -DCMAKE_PREFIX_PATH="~/install/external/cmake;~/install/thorcc/cmake;~/install/tools/cmake" -DCMAKE_MODULE_PATH=~/install/thorcc/cmake -DCMAKE_BUILD_TYPE=$RELEASE
-            make && make install
-        popd
+        $ONLYEMSCRIPTEN || {
+            echo Building $TX $RELEASE...
+            mkdir -p build
+            pushd build
+                $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install/examples -DCMAKE_PREFIX_PATH="~/install/external/cmake;~/install/thorcc/cmake;~/install/tools/cmake" -DCMAKE_MODULE_PATH=~/install/thorcc/cmake -DCMAKE_BUILD_TYPE=$RELEASE
+                $EXEC make && $EXEC make install
+            popd
+        }
 
-        if $EMSCRIPTEN; then
+        $BUILDEMSCRIPTEN && {
             echo Building $TX emscripten...
             mkdir -p build-js
             pushd build-js
-                cmake .. -DCMAKE_INSTALL_PREFIX=~/install-js/examples -DCMAKE_TOOLCHAIN_FILE=$EMSCRIPTEN/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_PREFIX_PATH="~/install-js/external/cmake;~/install-js/thorcc/cmake;~/install/tools/cmake" -DCMAKE_MODULE_PATH=~/install-js/thorcc/cmake -DCMAKE_BUILD_TYPE=$RELEASE
-                make
+                $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install-js/examples -DCMAKE_TOOLCHAIN_FILE=$EMSCRIPTEN/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_PREFIX_PATH="~/install-js/external/cmake;~/install-js/thorcc/cmake;~/install/tools/cmake" -DCMAKE_MODULE_PATH=~/install-js/thorcc/cmake -DCMAKE_BUILD_TYPE=$RELEASE
+                $EXEC make
             popd
-        fi
+        }
     popd
 }
 
 if $CLEAN; then 
-    $EXTERNAL && cleanExternal
-    $THOR && cleanThor
-    $EXAMPLES && cleanExamples
+    $EXTERNAL && clean $TE
+    $THOR && clean $T
+    $EXAMPLES && clean $TX
 fi
 
 $EXTERNAL && buildExternal

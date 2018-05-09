@@ -1,7 +1,7 @@
 #!/bin/sh
 
 function showHelp() {
-    echo "Usage: ./rebuild.sh [-hncjetxaR]"
+    echo "Usage: ./rebuild.sh [-hncjetxaRAV]"
     echo ' where'
     echo '   -h  show help'
     echo '   -n  dry run'

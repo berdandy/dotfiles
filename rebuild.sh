@@ -15,12 +15,14 @@ function showHelp() {
     echo '   -X  rebuild nothing (if you only want to clean, or link assets)'
     echo '   -R  build for release (warning: may require clean)'
     echo '   -A  link assets to Examples build locations'
+    echo '   -V  build verbose cmake output'
 }
 
 CLEAN=false
 DRY_RUN=false
 BUILDEMSCRIPTEN=false
 ONLYEMSCRIPTEN=false
+VERBOSE_CMAKE=false
 EXTERNAL=false
 THOR=false
 EXAMPLES=false
@@ -29,7 +31,7 @@ ASSETS=false
 RELEASE=Debug
 MAKECMD="make -j4"
 
-args=`getopt hncjJetxaXRA $*`
+args=`getopt hncjJetxaXRAV $*`
 if [ $? != 0 ]; then
     showHelp
     exit 2
@@ -77,6 +79,9 @@ for i; do
             -A)
                 ASSETS=true
                 shift;;
+            -V)
+                VERBOSE_CMAKE=true
+                shift;;
             --)
                 shift; break;;
        esac
@@ -99,6 +104,11 @@ if $DRY_RUN; then
     EXEC=echo 
 fi
 
+CMAKEOPTIONS=
+if $VERBOSE_CMAKE; then
+    CMAKEOPTIONS="$CMAKEOPTIONS -DCMAKE_VERBOSE_MAKEFILE=ON"
+fi
+
 if [ ! -d $T ] || [ ! -d $TE ] || [ ! -d $TX ]; then
     echo Environment variables T, TE, and TX must be defined and point to git clone folders:
     echo ' TE : ThorCC-External'
@@ -118,13 +128,19 @@ function clean() {
     $BUILDEMSCRIPTEN && $EXEC rm -rf $1/build-js
 }
 
+function cleanInstall() {
+    echo Cleaning $1...
+    $ONLYEMSCRIPTEN || $EXEC rm -rf ~/install/$1
+    $BUILDEMSCRIPTEN && $EXEC rm -rf ~/install-js/$1
+}
+
 function buildExternal() {
     pushd $TE
         $ONLYEMSCRIPTEN || {
             echo Building $TE $RELEASE...
             mkdir -p build
             pushd build
-                $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install/external -DCMAKE_BUILD_TYPE=$RELEASE
+                $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install/external -DCMAKE_BUILD_TYPE=$RELEASE $CMAKEOPTIONS
                 $EXEC $MAKECMD && $EXEC $MAKECMD install
             popd
         }
@@ -133,7 +149,7 @@ function buildExternal() {
             echo Building $TE emscripten...
             mkdir -p build-js
             pushd build-js
-                $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install-js/external -DCMAKE_BUILD_TYPE=$RELEASE -DCMAKE_TOOLCHAIN_FILE=$EMSCRIPTEN/cmake/Modules/Platform/Emscripten.cmake
+                $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install-js/external -DCMAKE_BUILD_TYPE=$RELEASE -DCMAKE_TOOLCHAIN_FILE=$EMSCRIPTEN/cmake/Modules/Platform/Emscripten.cmake $CMAKEOPTIONS
                 $EXEC $MAKECMD && $EXEC $MAKECMD install
             popd
         }
@@ -146,7 +162,7 @@ function buildThor() {
             echo Building $T $RELEASE...
             mkdir -p build
             pushd build
-                $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install/thorcc -DCMAKE_PREFIX_PATH="~/install/external/cmake;~/install/tools/cmake" -DCMAKE_BUILD_TYPE=$RELEASE
+                $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install/thorcc -DCMAKE_PREFIX_PATH="~/install/external/cmake;~/install/tools/cmake" -DCMAKE_BUILD_TYPE=$RELEASE $CMAKEOPTIONS
                 $EXEC $MAKECMD && $EXEC $MAKECMD install
             popd
         }
@@ -155,7 +171,7 @@ function buildThor() {
             echo Building $T emscripten...
             mkdir -p build-js
             pushd build-js
-                $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install-js/thorcc -DCMAKE_PREFIX_PATH="~/install-js/external/cmake;~/install/tools/cmake" -DCMAKE_BUILD_TYPE=$RELEASE -DCMAKE_TOOLCHAIN_FILE=$EMSCRIPTEN/cmake/Modules/Platform/Emscripten.cmake
+                $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install-js/thorcc -DCMAKE_PREFIX_PATH="~/install-js/external/cmake;~/install/tools/cmake" -DCMAKE_BUILD_TYPE=$RELEASE -DCMAKE_TOOLCHAIN_FILE=$EMSCRIPTEN/cmake/Modules/Platform/Emscripten.cmake $CMAKEOPTIONS
                 $EXEC $MAKECMD && $EXEC $MAKECMD install
             popd
         }
@@ -168,7 +184,7 @@ function buildExamples() {
             echo Building $TX $RELEASE...
             mkdir -p build
             pushd build
-                $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install/examples -DCMAKE_PREFIX_PATH="~/install/external/cmake;~/install/thorcc/cmake;~/install/tools/cmake" -DCMAKE_MODULE_PATH=~/install/thorcc/cmake -DCMAKE_BUILD_TYPE=$RELEASE
+                $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install/examples -DCMAKE_PREFIX_PATH="~/install/external/cmake;~/install/thorcc/cmake;~/install/tools/cmake" -DCMAKE_MODULE_PATH=~/install/thorcc/cmake -DCMAKE_BUILD_TYPE=$RELEASE $CMAKEOPTIONS
                 $EXEC $MAKECMD && $EXEC $MAKECMD install
             popd
         }
@@ -177,7 +193,7 @@ function buildExamples() {
             echo Building $TX emscripten...
             mkdir -p build-js
             pushd build-js
-                $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install-js/examples -DCMAKE_TOOLCHAIN_FILE=$EMSCRIPTEN/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_PREFIX_PATH="~/install-js/external/cmake;~/install-js/thorcc/cmake;~/install/tools/cmake" -DCMAKE_MODULE_PATH=~/install-js/thorcc/cmake -DCMAKE_BUILD_TYPE=$RELEASE
+                $EXEC cmake .. -DCMAKE_INSTALL_PREFIX=~/install-js/examples -DCMAKE_TOOLCHAIN_FILE=$EMSCRIPTEN/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_PREFIX_PATH="~/install-js/external/cmake;~/install-js/thorcc/cmake;~/install/tools/cmake" -DCMAKE_MODULE_PATH=~/install-js/thorcc/cmake -DCMAKE_BUILD_TYPE=$RELEASE $CMAKEOPTIONS
                 $EXEC $MAKECMD
             popd
         }
@@ -198,8 +214,11 @@ function linkAssets() {
 
 if $CLEAN; then 
     $EXTERNAL && clean $TE
+    $EXTERNAL && cleanInstall external
     $THOR && clean $T
+    $THOR && cleanInstall thorcc
     $EXAMPLES && clean $TX
+    $EXAMPLES && cleanInstall examples
 fi
 
 $EXTERNAL && buildExternal
